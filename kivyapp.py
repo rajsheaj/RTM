@@ -35,6 +35,8 @@ class GridLayout(GridLayout):
     def callback(self, elem):
         print(self.text1.text)
         print(self.text2.text)
+        #exception handling need to be built in here
+
         # logic to call the RTM, SRS first
         srs_object = SRSGathering(self.text1.text)
         srs = srs_object.gather_srs()
