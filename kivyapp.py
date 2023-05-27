@@ -13,7 +13,6 @@ from ExtractTestProtocols import ExtractTestProtocols
 from SRSGathering import SRSGathering
 from WriteToExcel import WriteToExcel
 
-
 class GridLayout(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
