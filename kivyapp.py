@@ -69,6 +69,13 @@ class GridLayout(GridLayout):
         excel_obj.writetoexcel_DF()
 
         # find orphans in TP and not in SRS
+        df1 = a.drop_duplicates(subset=['Req_ID'], keep='first')
+        df2 = srs.drop_duplicates(subset=['Req_ID'], keep='first')
+        df_all = df1.merge(df2, on=['Req_ID'], how='left', indicator=True)
+        df_all = df_all.loc[df_all['_merge'] == 'left_only']
+        excel_obj = WriteToExcel('orphans.xlsx', df_all)
+        excel_obj.writetoexcel_DF()
+
         print("completed")
 
     def callback2(self, elem):
