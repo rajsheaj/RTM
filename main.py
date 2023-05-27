@@ -1,6 +1,5 @@
 from kivyapp import DemoApp
 
-
 def rtm_main():
     demo = DemoApp()
     demo.run()
