@@ -1,8 +1,13 @@
+import os.path
+import threading
+import time
+
 from _cffi_backend import callback
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
+from kivy.uix.popup import Popup
 from kivy.uix.textinput import TextInput
 
 from ExtractTestName import ExtractTestName
@@ -26,17 +31,24 @@ class GridLayout(GridLayout):
         self.btn1.bind(on_press = self.callback)
         self.add_widget(self.btn1)
 
-
         self.btn2 = Button(text='Clear text')
         self.btn2.bind(on_press= self.callback2)
         self.add_widget(self.btn2)
 
+        self.popup = Popup(title='RTM',
+                      content=Label(text='invalid path'),
+                      size_hint=(None, None), size=(200, 200))
 
     def callback(self, elem):
+
+        if os.path.isfile(self.text1.text) and os.path.exists(self.text2.text):
+            threading.Thread(target=self.do_callback).start()
+        else:
+            self.popup.open()
+
+    def do_callback(self):
         print(self.text1.text)
         print(self.text2.text)
-        #exception handling need to be built in here
-
         # logic to call the RTM, SRS first
         srs_object = SRSGathering(self.text1.text)
         srs = srs_object.gather_srs()
@@ -59,7 +71,7 @@ class GridLayout(GridLayout):
         excel_obj.writetoexcel_DF()
 
         # find orphans in TP and not in SRS
-        
+        print("completed")
 
     def callback2(self, elem):
         self.text1.text = ""
