@@ -1,9 +1,3 @@
-from ExtractTestName import ExtractTestName
-from SRSGathering import SRSGathering
-from WriteToExcel import WriteToExcel
-from ExtractTestProtocols import ExtractTestProtocols
-
-import os
 
 from kivyapp import DemoApp
 

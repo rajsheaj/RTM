@@ -1,7 +1,5 @@
 import os.path
 import threading
-import time
-
 from _cffi_backend import callback
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
