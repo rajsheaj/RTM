@@ -12,6 +12,7 @@ from ExtractTestName import ExtractTestName
 from ExtractTestProtocols import ExtractTestProtocols
 from SRSGathering import SRSGathering
 from WriteToExcel import WriteToExcel
+from plyer import filechooser
 
 
 class GridLayout(GridLayout):
@@ -52,6 +53,7 @@ class GridLayout(GridLayout):
         srs = srs_object.gather_srs()
         excel_obj = WriteToExcel('SRS.xlsx', srs)
         excel_obj.writetoexcel_DF()
+
         # extract test names
         tp_object = ExtractTestName(self.text2.text)
         a = tp_object.extract_test_name()

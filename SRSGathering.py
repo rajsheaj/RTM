@@ -20,6 +20,7 @@ class SRSGathering:
                             print("requirement duplicate conflict observed - ", req_id)
                             self.duplicate_list.append(req_id)
                         else:
+                            req_id = req_id.strip(' \t\n\r')
                             self.req_dict[req_id] = req_text
 
         df = pd.DataFrame(self.req_dict.items(), columns=['Req_ID', 'Req_Text'])
